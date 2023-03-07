@@ -1,21 +1,7 @@
-from pyhive import hive
-
-
-host_name = "127.0.0.1"
-port = 10000
-user = "scott"
-password = "tiger"
-database="default"
-
-def hiveconnection(host_name, port, user,password, database):
-    conn = hive.Connection(host=host_name, port=port, username=user, password=password,
-                           database=database, auth='CUSTOM')
-    cur = conn.cursor()
-    cur.execute('select * from employee')
-    result = cur.fetchall()
-
-    return result
+from configurations import hive_conf as h_conf
+from connections import hive_utility as hive_u
 
 # Call above function
-output = hiveconnection(host_name, port, user,password, database)
+conn = hive_u.hiveconnection(h_conf.host_name, h_conf.port, h_conf.user,h_conf.password, h_conf.database)
+output = hive_u.hive_selectallfromtable(conn, 'employee')
 print(output)
