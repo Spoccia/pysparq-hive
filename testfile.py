@@ -1,17 +1,17 @@
 from pyhive import hive
 
 
-host_name = "192.168.0.38"
+host_name = "127.0.0.1"
 port = 10000
-user = "admin"
-password = "password"
-database="test_db"
+user = "scott"
+password = "tiger"
+database="default"
 
 def hiveconnection(host_name, port, user,password, database):
     conn = hive.Connection(host=host_name, port=port, username=user, password=password,
                            database=database, auth='CUSTOM')
     cur = conn.cursor()
-    cur.execute('select item_sk,reason_sk, account_credit from returns limit 5')
+    cur.execute('select * from employee')
     result = cur.fetchall()
 
     return result
