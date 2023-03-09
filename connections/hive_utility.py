@@ -15,3 +15,20 @@ def hive_selectallfromtable(conn, tablename):
     result = cur.fetchall()
 
     return result
+
+def hive_cretaetable(conn, query):
+    cur = conn.cursor()
+    cur.execute(query)
+    
+def hive_showtables(conn):
+    cur = conn.cursor()
+    cur.execute('show tables' )
+    result = cur.fetchall()
+    return result
+
+
+def hive_describetable(conn, tablename):
+    cur = conn.cursor()
+    cur.execute('DESCRIBE ' +tablename )
+    result = cur.fetchall()
+    return result
